@@ -1,0 +1,127 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background-color: #f4f4f4;
+}
+
+.game {
+  position: relative;
+  width: 800px;
+  height: 200px;
+  margin: 50px auto;
+  background-color: #fff;
+  border: 2px solid #444;
+  overflow: hidden;
+}
+
+/* Dino sprite container */
+#dino {
+  position: absolute;
+  width: 44px;
+  height: 47px;
+  bottom: 0;
+  left: 50px;
+  background-image: url('https://i.imgur.com/2yGZcZp.png'); /* basic dino sprite sheet */
+  background-repeat: no-repeat;
+  background-size: 220px 47px; /* 5 frames horizontally */
+  animation: runAnimation 0.6s steps(4) infinite;
+  transition: bottom 0.1s, height 0.1s;
+}
+
+#dino.jumping {
+  animation: none;
+  background-position: -132px 0; /* jump frame */
+  height: 47px;
+}
+
+#dino.ducking {
+  animation: none;
+  background-position: 0 0; /* duck frame on the sprite */
+  height: 25px;
+  bottom: 0;
+}
+
+/* Running animation frames */
+@keyframes runAnimation {
+  0% { background-position: 0 0; }
+  25% { background-position: -44px 0; }
+  50% { background-position: -88px 0; }
+  75% { background-position: -132px 0; }
+  100% { background-position: 0 0; }
+}
+
+/* Cactus obstacle */
+#cactus {
+  position: absolute;
+  width: 20px;
+  height: 40px;
+  background-color: green;
+  bottom: 0;
+  right: -20px;
+}
+
+/* Bird obstacle */
+#bird {
+  position: absolute;
+  width: 46px;
+  height: 40px;
+  background-image: url('https://i.imgur.com/rE3Z3jV.png'); /* simple bird sprite */
+  background-repeat: no-repeat;
+  background-size: 92px 40px; /* 2 frames */
+  bottom: 70px; /* flying height */
+  right: -46px;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-name: none;
+}
+
+/* Bird wing flap */
+@keyframes flapBird {
+  0%, 100% { background-position: 0 0; }
+  50% { background-position: -46px 0; }
+}
+
+@keyframes moveCactus {
+  0% {
+    right: -20px;
+  }
+  100% {
+    right: 820px;
+  }
+}
+
+@keyframes moveBird {
+  0% {
+    right: -46px;
+  }
+  100% {
+    right: 846px;
+  }
+}
+
+#score {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+#restartBtn {
+  position: absolute;
+  top: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: none;
+}
+
+#restartBtn:hover {
+  background-color: #555;
+}
